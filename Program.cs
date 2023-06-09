@@ -39,7 +39,9 @@ namespace rate_news
             {
                 if (e.Message.Text == "/start")
                 {
-                    await botClient.SendTextMessageAsync(e.Message.Chat.Id, "Привет! Нажми кнопку, чтобы получить курс доллара к рублю или новости.", replyMarkup: GetInlineKeyboard());
+                    await botClient.SendTextMessageAsync(e.Message.Chat.Id,
+                        "Привет! Нажми кнопку, чтобы получить курс валют или новости.",
+                        replyMarkup: GetInlineKeyboard());
                 }
                 else if (e.Message.Text == "/news")
                 {
@@ -71,7 +73,9 @@ namespace rate_news
             }
             else if (e.CallbackQuery.Data == "goHome")
             {
-                await botClient.SendTextMessageAsync(e.CallbackQuery.Message.Chat.Id, "Вы вернулись на главную страницу.", replyMarkup: GetInlineKeyboard());
+                await botClient.SendTextMessageAsync(e.CallbackQuery.Message.Chat.Id,
+                    "Вы вернулись на главную страницу.",
+                    replyMarkup: GetInlineKeyboard());
             }
         }
 
@@ -178,7 +182,9 @@ namespace rate_news
                         double rid = Convert.ToDouble(eur.InnerText.Replace(",", "."));
                         double CNY = Convert.ToDouble(cny.InnerText.Replace(",", "."));
 
-                        return $"1 Доллар США = {rate} рублей\n1 Евро = {rid} рублей\n1 Китайский юань = {CNY} рублей";
+                        return $"1 Доллар США = {rate} рублей\n" +
+                            $"1 Евро = {rid} рублей\n" +
+                            $"1 Китайский юань = {CNY} рублей";
                     }
                     else
                     {

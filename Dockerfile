@@ -1,3 +1,5 @@
+#See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
+
 FROM mcr.microsoft.com/dotnet/runtime:3.1 AS base
 WORKDIR /app
 EXPOSE 80
@@ -11,7 +13,7 @@ WORKDIR "/src/."
 RUN dotnet build "rate_news.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "rate_news.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "rate_news.csproj" -c Release -o /app/publish /p:UseAppHost=true
 
 FROM base AS final
 WORKDIR /app
